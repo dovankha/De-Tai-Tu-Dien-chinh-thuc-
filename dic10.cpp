@@ -2,7 +2,7 @@
 #include <conio.h>
 #include <stdio.h>
 #include "T_M_E.h"
-
+// Do Van Kha
 struct node
 {
 	T_M_E data;
@@ -210,8 +210,8 @@ int main()
 			 << "\t\t\t\t||   4. Xoa tu                  ||" << endl
 			 << "\t\t\t\t||   0. Thoat khoi tu dien      ||" << endl
 			 << "\t\t\t\t==================================" << endl;
-
 		SetConsoleTextAttribute(console, 7);
+
 		cout << "\n\n\tMoi ban nhap lua chon: ";
 		cin >> luaChon;
 

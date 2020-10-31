@@ -26,7 +26,7 @@ public:
 	}
 	void printTu()
 	{
-		cout << setw(9) << left << Tu << "\t";
+		cout << setw(10) << left << Tu;
 	}
 };
 

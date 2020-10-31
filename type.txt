@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Adv Noun Noun Noun Noun Noun;V Adj Adj Noun Noun Noun Noun V Noun Noun Noun;V Noun Noun 
+=======
+Adv Noun Noun Noun Noun Noun;V Adj Adj Noun Noun Noun Noun V Noun Noun Noun;V Noun Noun  Verb
+>>>>>>> c9ec4a3266a61d9adfba0c116986a53b72b1a219

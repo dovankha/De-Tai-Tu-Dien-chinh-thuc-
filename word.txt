@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 add apple army ball bear book big cold dad family father girl go hat king mine zoo zone mom
+=======
+add apple army ball bear book big cold dad family father girl go hat king mine zoo zone win
+>>>>>>> c9ec4a3266a61d9adfba0c116986a53b72b1a219

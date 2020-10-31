@@ -8,7 +8,7 @@ struct node
 	T_M_E data;
 	node *pNext;
 };
-typedef struct node NODE; //thay the struct node thanh NODE
+typedef struct node NODE;
 
 struct list
 {
@@ -162,7 +162,43 @@ void XoaNodeCoKhoaBatKy(LIST &l, string tu)
 void timKiem(LIST &l,string search)
 {
 	
+<<<<<<< HEAD
 	bool timKiem = false;
+=======
+	int luaChon;
+	while (true)
+	{
+		system("cls");
+		SetConsoleTextAttribute(console, 9);
+		cout << "\t\t\t\t==================================" << endl
+			 << "\t\t\t\t||         ****MENU****         ||" << endl
+			 << "\t\t\t\t||   1. Tim kiem                ||" << endl
+			 << "\t\t\t\t||   2. Them tu                 ||" << endl
+			 << "\t\t\t\t||   3. Chinh sua tu            ||" << endl
+			 << "\t\t\t\t||   4. Xoa tu                  ||" << endl
+			 << "\t\t\t\t||   0. Thoat khoi tu dien      ||" << endl
+			 << "\t\t\t\t==================================" << endl;
+		SetConsoleTextAttribute(console, 7);
+
+		cout << "\n\n\tMoi ban nhap lua chon: ";
+		cin >> luaChon;
+
+		if (luaChon < 0 || luaChon > 4)
+		{
+			SetConsoleTextAttribute(console, 12);
+			cout << "\n\tLua chon cua ban khong dung!";
+			getch();
+		}
+		else if (luaChon == 1)
+		{
+			system("cls");
+			bool timKiem = false;
+			string search;
+			cout << "\n\t\tNhap tu can tim kiem: ";
+			cin >> search;
+			cout << "\t\t------------------------\n"
+				 << endl;
+>>>>>>> c9ec4a3266a61d9adfba0c116986a53b72b1a219
 			for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 				if (search == k->data.getTu())
 				{
@@ -174,7 +210,7 @@ void timKiem(LIST &l,string search)
 			if (!timKiem)
 			{
 				SetConsoleTextAttribute(console, 12);
-				cout << "\t\t\nnERROR: Tu '" << search << "' chua co trong tu dien!" << endl
+				cout << "\t\t\nERROR: Tu '" << search << "' chua co trong tu dien!" << endl
 					 << "\t\tNhan phim bat ki de quay lai!" << endl;
 				getch();
 			}

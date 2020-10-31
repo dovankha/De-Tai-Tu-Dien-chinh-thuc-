@@ -38,26 +38,118 @@ public:
 		return Nghia;
 	}
 	string getloaiTu()
-	{ 
+	{
 		return loaiTu;
 	}
-	
+
 	T_M_E(string, string, string);
 	T_M_E(int, string, string, string, string);
 
 	void xuatfullTu()
 	{
-		SetConsoleTextAttribute(console, 12);
-		cout << setw(9) << left << "Word"
-			 << "\t" << setw(10) << left << "Type"
-			 << "\t" << setw(40) << left << "Mean"
-			 << "\t" << setw(10) << left << "Example"
-			 << "\t" << endl;
+		SetConsoleTextAttribute(console, 91);
+		cout << setw(10) << left << "Word" << setw(20) << left << "Type" << setw(40) << left << "Mean" << setw(40) << left << "Example" << endl;
 		SetConsoleTextAttribute(console, 7);
 		this->printTu();
-		cout << setw(10) << left << loaiTu << "\t";
-		cout << setw(40) << left << Nghia << "\t";
-		cout << setw(10) << left << viDu << "\t";
+		string loaiTuMoi, nghiaMoi, viDuMoi, loaiTuCopy = loaiTu + ';', nghiaCopy = Nghia + '/', viDuCopy = viDu + '/';
+		string MloaiTuMoi[100], MnghiaMoi[100], MviDuMoi[100], temp1 = "", temp2 = "";
+		bool KT[100];
+		int lenloaiTu = 0, lenNghia = 0, lenViDu = 0;
+		for (int i = 0; i < loaiTuCopy.length(); i++)
+			if (loaiTuCopy[i] == ';')
+				lenloaiTu++;
+
+		for (int i = 0; i < nghiaCopy.length(); i++)
+			if (nghiaCopy[i] == ';' || nghiaCopy[i] == '/')
+			{
+				lenNghia++;
+				temp1 += nghiaCopy[i];
+			}
+
+		for (int i = 0; i < viDuCopy.length(); i++)
+			if (viDuCopy[i] == ';' || viDuCopy[i] == '/')
+			{
+				lenViDu++;
+				temp2 += viDuCopy[i];
+			}
+
+		int GTLN = max(lenloaiTu, max(lenNghia, lenViDu));
+		for (int i = 0; i < GTLN; i++)
+		{
+			MloaiTuMoi[i] = "";
+			MnghiaMoi[i] = "";
+			MviDuMoi[i] = "";
+		}
+		for (int i = 0; i < GTLN;)
+		{
+			for (int j = 0; j < loaiTuCopy.length(); j++)
+				if (loaiTuCopy[j] != ';')
+					loaiTuMoi += loaiTuCopy[j];
+				else
+				{
+					MloaiTuMoi[i] = loaiTuMoi;
+					loaiTuCopy = loaiTuCopy.erase(0, j + 1);
+					loaiTuMoi = loaiTuMoi.erase(0, loaiTuMoi.length());
+					break;
+				}
+			int z = 0, nho1 = i, nho2 = i;
+			for (int j = 0; j < nghiaCopy.length(); j++)
+			{
+				if (nghiaCopy[j] != ';' && nghiaCopy[j] != '/')
+				{
+					nghiaMoi += nghiaCopy[j];
+				}
+				else
+				{
+					MnghiaMoi[nho1] = nghiaMoi;
+					nho1++;
+					nghiaMoi = nghiaMoi.erase(0, nghiaMoi.length());
+					if (nghiaCopy[j] == '/')
+					{
+						z = j;
+						break;
+					}
+				}
+			}
+			nghiaCopy = nghiaCopy.erase(0, z + 1);
+			for (int j = 0; j < viDuCopy.length(); j++)
+			{
+				if (viDuCopy[j] != ';' && viDuCopy[j] != '/')
+				{
+					viDuMoi += viDuCopy[j];
+				}
+				else
+				{
+					MviDuMoi[nho2] = viDuMoi;
+					nho2++;
+					viDuMoi = viDuMoi.erase(0, viDuMoi.length());
+					if (viDuCopy[j] == '/')
+					{
+						z = j;
+						break;
+					}
+				}
+			}
+			viDuCopy = viDuCopy.erase(0, z + 1);
+			if (nho1 > nho2)
+				i = nho1;
+			else
+				i = nho2;
+		}
+		for (int i = 0; i < GTLN; i++)
+		{
+			if (i == 0)
+				cout << setw(20) << left << MloaiTuMoi[i]
+					 << setw(40) << left << MnghiaMoi[i]
+					 << setw(40) << left << MviDuMoi[i] << endl;
+			else
+				cout << setw(10) << left << " "
+					 << setw(20) << left << MloaiTuMoi[i]
+					 << setw(40) << left << MnghiaMoi[i]
+					 << setw(40) << left << MviDuMoi[i] << endl;
+		}
+		SetConsoleTextAttribute(console, 12);
+		cout << "\t\t***NOTE: An phim Enter de quay lai menu chuc nang";
 	}
 	void setfullTu(T_M_E p)
 	{

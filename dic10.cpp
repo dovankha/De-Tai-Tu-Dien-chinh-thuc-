@@ -121,7 +121,7 @@ void XoaCuoi(LIST &l)
 		{
 			delete findTail(l);
 			k->pNext = NULL;
-			findTail(l)->pNext = k;
+			findTail(l)->data= k->data;
 			return;
 		}
 	}
@@ -131,7 +131,7 @@ void XoaNodeCoKhoaBatKy(LIST &l, string tu)
 {
 
 	if (l.pHead == NULL)
-	{
+ 	{
 		return;
 	}
 

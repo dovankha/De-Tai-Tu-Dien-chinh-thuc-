@@ -74,7 +74,7 @@ public:
 			}
 
 		int GTLN = max(lenloaiTu, max(lenNghia, lenViDu));
-		for (int i = 0; i < 50; i++)
+		for (int i = 0; i < GTLN; i++)
 		{
 			MloaiTuMoi[i] = "";
 			MnghiaMoi[i] = "";
@@ -136,7 +136,7 @@ public:
 			else
 				i = nho2;
 		}
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < GTLN; i++)
 		{
 			if (i == 0)
 				cout << setw(20) << left << MloaiTuMoi[i]

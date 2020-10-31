@@ -221,7 +221,6 @@ int main()
 			cout << "\n\tLua chon cua ban khong dung!";
 			getch();
 		}
-
 		else if (luaChon == 1)
 		{
 			system("cls");
@@ -242,7 +241,7 @@ int main()
 			if (!timKiem)
 			{
 				SetConsoleTextAttribute(console, 12);
-				cout << "\t\t\nnERROR: Tu '" << search << "' chua co trong tu dien!" << endl
+				cout << "\t\t\nERROR: Tu '" << search << "' chua co trong tu dien!" << endl
 					 << "\t\tNhan phim bat ki de quay lai!" << endl;
 				getch();
 			}

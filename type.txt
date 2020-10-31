@@ -1,1 +1,1 @@
-Adv Noun Noun Noun Noun Noun;V Adj Adj Noun Noun Noun Noun V Noun Noun Noun;V Noun Noun Verb
+preposition Adv Noun Noun Noun Noun Noun;V Adj Adj Noun Noun Noun Noun V Noun Noun Noun;V Noun Noun  verb  adj  noun  noun

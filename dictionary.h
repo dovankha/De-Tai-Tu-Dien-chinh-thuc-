@@ -16,13 +16,13 @@ public:
 	{
 		return Tu;
 	}
-	void setId(int new_id)
+	void setId(int newId)
 	{
-		Id = new_id;
+		Id = newId;
 	}
-	void setTu(string new_tu)
+	void setTu(string newTu)
 	{
-		Tu = new_tu;
+		Tu = newTu;
 	}
 	void printTu()
 	{

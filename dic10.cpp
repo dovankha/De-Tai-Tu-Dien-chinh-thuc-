@@ -2,7 +2,7 @@
 #include <conio.h>
 #include <stdio.h>
 #include "T_M_E.h"
-
+// Kha dep trai nhat qua dat
 struct node
 {
 	T_M_E data;

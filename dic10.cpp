@@ -159,78 +159,10 @@ void XoaNodeCoKhoaBatKy(LIST &l, string tu)
 		g = k;
 	}
 }
-
-int main()
+void timKiem(LIST &l,string search)
 {
-	SetConsoleTitle(TEXT("Tu Dien Anh-Viet"));
-
-	LIST l;
-	KhoiTao(l);
-	ifstream fw, ft, fm, fe, fiw, fit, fim, fie;
-	string tu, loai, nghia, vd, TU, LOAI, NGHIA, VD;
-	int count = 0;
-	fw.open("word.txt", ios::in);
-	ft.open("type.txt", ios::in);
-	fm.open("mean.txt", ios::in);
-	fe.open("example.txt", ios::in);
-	fiw.open("word.txt", ios::in);
-	fit.open("type.txt", ios::in);
-	fim.open("mean.txt", ios::in);
-	fie.open("example.txt", ios::in);
-
-	while (!fiw.eof())
-	{
-		getline(fiw, TU);
-		getline(fit, LOAI);
-		getline(fim, NGHIA);
-		getline(fie, VD);
-	}
-	while (!fw.eof())
-	{
-		count++;
-		getline(fw, tu, ' ');
-		getline(ft, loai, ' ');
-		getline(fm, nghia, '@');
-		getline(fe, vd, '@');
-		T_M_E tuVung(count, tu, loai, nghia, vd);
-		NODE *p = KhoiTaoNODE(tuVung);
-		themVaoCuoi(l, p);
-	}
 	
-	int luaChon;
-	while (true)
-	{
-		system("cls");
-		SetConsoleTextAttribute(console, 9);
-		cout << "\t\t\t\t==================================" << endl
-			 << "\t\t\t\t||         ****MENU****         ||" << endl
-			 << "\t\t\t\t||   1. Tim kiem                ||" << endl
-			 << "\t\t\t\t||   2. Them tu                 ||" << endl
-			 << "\t\t\t\t||   3. Chinh sua tu            ||" << endl
-			 << "\t\t\t\t||   4. Xoa tu                  ||" << endl
-			 << "\t\t\t\t||   0. Thoat khoi tu dien      ||" << endl
-			 << "\t\t\t\t==================================" << endl;
-
-		SetConsoleTextAttribute(console, 7);
-		cout << "\n\n\tMoi ban nhap lua chon: ";
-		cin >> luaChon;
-
-		if (luaChon < 0 || luaChon > 4)
-		{
-			SetConsoleTextAttribute(console, 12);
-			cout << "\n\tLua chon cua ban khong dung!";
-			getch();
-		}
-
-		else if (luaChon == 1)
-		{
-			system("cls");
-			bool timKiem = false;
-			string search;
-			cout << "\n\t\tNhap tu can tim kiem: ";
-			cin >> search;
-			cout << "\t\t------------------------\n"
-				 << endl;
+	bool timKiem = false;
 			for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 				if (search == k->data.getTu())
 				{
@@ -246,15 +178,14 @@ int main()
 					 << "\t\tNhan phim bat ki de quay lai!" << endl;
 				getch();
 			}
-		}
-		else if (luaChon == 2)
-		{
-			system("cls");
-			bool timKiem = false;
-			string search;
-			cout << "\t\t\nNhap tu can THEM: ";
-			cin >> search;
-			for (NODE *k = l.pHead; k != NULL; k = k->pNext)
+		
+}
+void addWord(LIST &l,string search)
+{
+	bool timKiem = false;
+	string tu, loai, nghia, vd, TU, LOAI, NGHIA, VD;
+	int count = 0;
+	for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 				if (search == k->data.getTu())
 					timKiem = true;
 			if (timKiem)
@@ -316,17 +247,11 @@ int main()
 				fom.close();
 				foe.close();
 			}
-		}
-		else if (luaChon == 3)
-		{
-			system("cls");
-			bool timKiem = false;
-			string search;
-			SetConsoleTextAttribute(console, 12);
-			cout << "\n\n\t\tNhap tu can CHINH SUA: ";
-			SetConsoleTextAttribute(console, 7);
-			cin >> search;
-			for (NODE *k = l.pHead; k != NULL; k = k->pNext)
+}
+void edit(LIST &l,string search)
+{
+	bool timKiem = false;
+	for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 				if (search == k->data.getTu())
 				{
 					timKiem = true;
@@ -406,6 +331,96 @@ int main()
 							break;
 					}
 				}
+}
+void menu()
+{
+	LIST l;
+	KhoiTao(l);
+	string tu, loai, nghia, vd, TU, LOAI, NGHIA, VD;
+	int count = 0;
+	ifstream fw, ft, fm, fe, fiw, fit, fim, fie;
+	fw.open("word.txt", ios::in);
+	ft.open("type.txt", ios::in);
+	fm.open("mean.txt", ios::in);
+	fe.open("example.txt", ios::in);
+	fiw.open("word.txt", ios::in);
+	fit.open("type.txt", ios::in);
+	fim.open("mean.txt", ios::in);
+	fie.open("example.txt", ios::in);
+
+	while (!fiw.eof())
+	{
+		getline(fiw, TU);
+		getline(fit, LOAI);
+		getline(fim, NGHIA);
+		getline(fie, VD);
+	}
+	while (!fw.eof())
+	{
+		count++;
+		getline(fw, tu, ' ');
+		getline(ft, loai, ' ');
+		getline(fm, nghia, '@');
+		getline(fe, vd, '@');
+		T_M_E tuVung(count, tu, loai, nghia, vd);
+		NODE *p = KhoiTaoNODE(tuVung);
+		themVaoCuoi(l, p);
+	}
+	
+	int luaChon;
+	while (true)
+	{
+		system("cls");
+		SetConsoleTextAttribute(console, 9);
+		cout << "\t\t\t\t==================================" << endl
+			 << "\t\t\t\t||         ****MENU****         ||" << endl
+			 << "\t\t\t\t||   1. Tim kiem                ||" << endl
+			 << "\t\t\t\t||   2. Them tu                 ||" << endl
+			 << "\t\t\t\t||   3. Chinh sua tu            ||" << endl
+			 << "\t\t\t\t||   4. Xoa tu                  ||" << endl
+			 << "\t\t\t\t||   0. Thoat khoi tu dien      ||" << endl
+			 << "\t\t\t\t==================================" << endl;
+
+		SetConsoleTextAttribute(console, 7);
+		cout << "\n\n\tMoi ban nhap lua chon: ";
+		cin >> luaChon;
+
+		if (luaChon < 0 || luaChon > 4)
+		{
+			SetConsoleTextAttribute(console, 12);
+			cout << "\n\tLua chon cua ban khong dung!";
+			getch();
+		}
+
+		else if (luaChon == 1)
+		{
+			system("cls");
+			
+			string search;
+			cout << "\n\t\tNhap tu can tim kiem: ";
+			cin >> search;
+			cout << "\t\t------------------------\n"
+				 << endl;
+			timKiem(l,search);
+		}
+		else if (luaChon == 2)
+		{
+			system("cls");
+			string search;
+			cout << "\t\t\nNhap tu can THEM: ";
+			cin >> search;
+			addWord(l,search);
+			
+		}
+		else if (luaChon == 3)
+		{
+			system("cls");
+			string search;
+			SetConsoleTextAttribute(console, 12);
+			cout << "\n\n\t\tNhap tu can CHINH SUA: ";
+			SetConsoleTextAttribute(console, 7);
+			cin >> search;
+			edit(l,search);
 		}
 		else if (luaChon == 4)
 		{
@@ -470,5 +485,11 @@ int main()
 	fit.close();
 	fim.close();
 	fie.close();
+}
+
+int main()
+{
+	SetConsoleTitle(TEXT("Tu Dien Anh-Viet"));
+	menu();
 	return 0;
 }

@@ -241,7 +241,7 @@ int main()
 			if (!timKiem)
 			{
 				SetConsoleTextAttribute(console, 12);
-				cout << "\t\t\nERROR: Tu '" << search << "' chua co trong tu dien!" << endl
+				cout << "\n\t\tERROR: Tu '" << search << "' chua co trong tu dien!" << endl
 					 << "\t\tNhan phim bat ki de quay lai!" << endl;
 				getch();
 			}
@@ -259,7 +259,7 @@ int main()
 			if (timKiem)
 			{
 				SetConsoleTextAttribute(console, 12);
-				cout << "\t\t\nERROR: Tu '" << search << "' da ton tai trong tu dien!" << endl
+				cout << "\n\t\tERROR: Tu '" << search << "' da ton tai trong tu dien!" << endl
 					 << "\t\tNhan Enter de quay lai menu chuc nang" << endl;
 				getch();
 			}

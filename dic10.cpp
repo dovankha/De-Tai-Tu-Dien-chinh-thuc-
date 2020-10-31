@@ -2,7 +2,7 @@
 #include <conio.h>
 #include <stdio.h>
 #include "T_M_E.h"
-// Do Van Kha
+
 struct node
 {
 	T_M_E data;

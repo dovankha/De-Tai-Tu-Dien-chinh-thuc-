@@ -8,7 +8,7 @@ struct node
 	T_M_E data;
 	node *pNext;
 };
-typedef struct node NODE; //thay the struct node thanh NODE
+typedef struct node NODE;
 
 struct list
 {

@@ -114,16 +114,17 @@ void menu()
 	{
 		system("cls");
 		SetConsoleTextAttribute(console, 9);
-		cout << "\t\t\t\t==================================" << endl
-			 << "\t\t\t\t||         ****MENU****         ||" << endl
-			 << "\t\t\t\t||   1. Tim kiem                ||" << endl
-			 << "\t\t\t\t||   2. Them tu                 ||" << endl
-			 << "\t\t\t\t||   3. Chinh sua tu            ||" << endl
-			 << "\t\t\t\t||   4. Xoa tu                  ||" << endl
-			 << "\t\t\t\t||   0. Thoat khoi tu dien      ||" << endl
-			 << "\t\t\t\t==================================" << endl << endl << endl;
+		cout << "\t\t\t\t\t\t\t\t==================================" << endl
+			 << "\t\t\t\t\t\t\t\t||         ****MENU****         ||" << endl
+			 << "\t\t\t\t\t\t\t\t||   1. Tim kiem                ||" << endl
+			 << "\t\t\t\t\t\t\t\t||   2. Them tu                 ||" << endl
+			 << "\t\t\t\t\t\t\t\t||   3. Chinh sua tu            ||" << endl
+			 << "\t\t\t\t\t\t\t\t||   4. Xoa tu                  ||" << endl
+			 << "\t\t\t\t\t\t\t\t||   0. Thoat khoi tu dien      ||" << endl
+			 << "\t\t\t\t\t\t\t\t==================================" << endl
+			 << endl
+			 << endl;
 
-		
 		SetConsoleTextAttribute(console, 7);
 
 		cout << "\n\n\tMoi ban nhap lua chon: ";
@@ -139,7 +140,17 @@ void menu()
 		{
 			system("cls");
 			bool timKiem = false;
-			cout << "\n\t\tNhap tu can tim kiem: ";
+			cout << "\t\tNhung tu so san: " << endl;
+			SetConsoleTextAttribute(console, 6);
+			dictionary *ptr1 = new dictionary;
+			//cout<<"\t\tNhung tu so san: "<<endl;
+			cout << "\t\t";
+			for (NODE *k = l.pHead; k != NULL; k = k->pNext)
+			{
+				cout << ptr1->showTu(k->data.getTu()) << " ";
+			}
+			SetConsoleTextAttribute(console, 7);
+			cout << "\n\n\t\tNhap tu can tim kiem: ";
 			cin >> search;
 			cout << "\t\t------------------------\n"
 				 << endl;
@@ -181,10 +192,10 @@ void menu()
 				ofstream fw, ft, fm, fe;
 				count++;
 				SetConsoleTextAttribute(console, 14);
-				cout << "\t\t\t\t===================================" << endl
-					 << "\t\t\t\t||" << char(254) << " ESC   :  Quay lai MENU       ||" << endl
-					 << "\t\t\t\t||" << char(254) << " Enter :  Tiep tuc them       ||" << endl
-					 << "\t\t\t\t===================================" << endl
+				cout << "\t\t\t\t\t\t\t\t===================================" << endl
+					 << "\t\t\t\t\t\t\t\t||" << char(254) << " ESC   :  Quay lai MENU       ||" << endl
+					 << "\t\t\t\t\t\t\t\t||" << char(254) << " Enter :  Tiep tuc them       ||" << endl
+					 << "\t\t\t\t\t\t\t\t===================================" << endl
 					 << endl;
 				SetConsoleTextAttribute(console, 12);
 				cout << "\t\t\t***NOTE: Hay ngan cach cac nghia & vi du boi dau ';' " << endl;

@@ -26,7 +26,11 @@ public:
 	}
 	void printTu()
 	{
-		cout << setw(10) << left << Tu;
+		cout << "\t\t\t" << setw(10) << left << Tu;
+	}
+	virtual string showTu(string s)
+	{
+		return s;
 	}
 };
 

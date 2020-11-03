@@ -48,7 +48,7 @@ public:
 	void xuatfullTu()
 	{
 		SetConsoleTextAttribute(console, 91);
-		cout << setw(10) << left << "Word" << setw(20) << left << "Type" << setw(40) << left << "Mean" << setw(40) << left << "Example" << endl;
+		cout << "\t\t\t" << setw(10) << left << "Word" << setw(20) << left << "Type" << setw(40) << left << "Mean" << setw(40) << left << "Example" << endl;
 		SetConsoleTextAttribute(console, 7);
 		this->printTu();
 		string loaiTuMoi, nghiaMoi, viDuMoi, loaiTuCopy = loaiTu + ';', nghiaCopy = Nghia + '/', viDuCopy = viDu + '/';
@@ -149,7 +149,7 @@ public:
 					 << setw(40) << left << MviDuMoi[i] << endl;
 		}
 		SetConsoleTextAttribute(console, 12);
-		cout << "\t\t***NOTE: An phim Enter de quay lai menu chuc nang";
+		cout << "\t\t\t\t***NOTE: An phim Enter de quay lai menu chuc nang";
 	}
 	void setfullTu(T_M_E p)
 	{

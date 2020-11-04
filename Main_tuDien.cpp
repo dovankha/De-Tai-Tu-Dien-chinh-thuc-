@@ -27,7 +27,6 @@ bool isEmpty(LIST &l)
 {
 	if (l.pHead == NULL)
 		return true;
-
 	return false;
 }
 
@@ -39,7 +38,6 @@ NODE *khoiTaoNODE(const T_M_E &x)
 		cout << "Khong du bo nho cap phat !";
 		return NULL;
 	}
-
 	p->data.setfullTu(x);
 	p->pNext = NULL;
 	return p;
@@ -54,7 +52,6 @@ NODE *findTail(LIST &l)
 	{
 		p = p->pNext;
 	}
-
 	return p;
 }
 
@@ -66,7 +63,7 @@ void xuatDanhSach(LIST l);
 void themVaoCuoi(LIST &l, NODE *p);
 void xoaCuoi(LIST &l);
 void xoaNodeCoKhoaBatKy(LIST &l, string tu);
-void chinhSuTu(LIST &l);
+void chinhSuaTu(LIST &l);
 void menu();
 bool kiemTraXau(string s);
 string chuanHoaXau(string s);
@@ -147,7 +144,7 @@ void menu()
 		{
 			system("cls");
 			bool timKiem = false;
-			cout << "\t\tNhung tu so san: " << endl;
+			cout << "\n\n\t\t\t\t\t\t\t\t=========== NHUNG TU CO SAN ===========" << endl;
 			SetConsoleTextAttribute(console, 6);
 			dictionary *ptr1 = new dictionary;
 			cout << "\t\t";
@@ -158,16 +155,17 @@ void menu()
 			SetConsoleTextAttribute(console, 7);
 			do
 			{
-				cout << "\n\t\tNhap tu can tim kiem: ";
+				cout << "\n\n\t\tNhap tu can TIM KIEM: ";
 				cin >> search;
 				if (!kiemTraXau(search))
 				{
-					cout << "\t\tNhap lai tu can tim kiem!" << endl;
+					SetConsoleTextAttribute(console, 12);
+					cout << "\n\n\t\t\t[ERROR]: Tu nay khong co trong tu dien!" << endl;
+					SetConsoleTextAttribute(console, 7);
 				}
 			} while (!kiemTraXau(search));
 			search = chuanHoaXau(search);
-			cout << "\t\t------------------------\n"
-				 << endl;
+
 			for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 				if (search == k->data.getTu())
 				{
@@ -179,7 +177,7 @@ void menu()
 			if (!timKiem)
 			{
 				SetConsoleTextAttribute(console, 12);
-				cout << "\n\t\tERROR: Tu '" << search << "' chua co trong tu dien!" << endl
+				cout << "\n\t\t[ERROR]: Tu '" << search << "' chua co trong tu dien!" << endl
 					 << "\t\tNhan phim bat ky de quay lai!" << endl;
 				getch();
 			}
@@ -188,15 +186,18 @@ void menu()
 		{
 			system("cls");
 			bool timKiem = false;
-			cout << "\t\t\nNhap tu can THEM: ";
+
+			cout << "\n\t\t\tNhap tu can THEM: ";
 			cin >> search;
+			search = chuanHoaXau(search);
+
 			for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 				if (search == k->data.getTu())
 					timKiem = true;
 			if (timKiem)
 			{
 				SetConsoleTextAttribute(console, 12);
-				cout << "\n\t\tERROR: Tu '" << search << "' da ton tai trong tu dien!" << endl
+				cout << "\n\t\t[ERROR]: Tu '" << search << "' da ton tai trong tu dien!" << endl
 					 << "\t\tNhan phim bat ky de quay lai menu chuc nang" << endl;
 				getch();
 			}
@@ -212,7 +213,7 @@ void menu()
 					 << "\t\t\t\t\t\t\t\t===================================" << endl
 					 << endl;
 				SetConsoleTextAttribute(console, 12);
-				cout << "\t\t\t***NOTE: Hay ngan cach cac nghia & vi du boi dau ';' " << endl;
+				cout << "\t\t\t\t\t***NOTE: Hay ngan cach cac nghia & vi du boi dau ';' !" << endl;
 				SetConsoleTextAttribute(console, 7);
 				while (true)
 				{
@@ -222,7 +223,8 @@ void menu()
 					string loai, nghia, vd;
 					fflush(stdin);
 					cout << "Nhap loai tu: ";
-					getline(cin, loai);
+					cin>>loai;
+					fflush(stdin);
 					saveLoai = saveLoai + loai + ';';
 					cout << "Nhap nghia cua tu: ";
 					getline(cin, nghia);
@@ -232,9 +234,9 @@ void menu()
 					saveViDu = saveViDu + vd + '/'; // save vi du
 					cout << endl;
 				}
-				loai = saveLoai.substr(0, saveLoai.length() - 1);
-				nghia = saveNghia.substr(0, saveNghia.length() - 1);
-				vd = saveViDu.substr(0, saveViDu.length() - 1);
+				loai = saveLoai.substr(1, saveLoai.length() -1);
+				nghia = saveNghia.substr(1, saveNghia.length() -1);
+				vd = saveViDu.substr(1, saveViDu.length() -1);
 				T_M_E tuVung(count, search, loai, nghia, vd);
 				search = TU + ' ' + search;
 				loai = LOAI + ' ' + loai;
@@ -242,25 +244,33 @@ void menu()
 				vd = VD + '@' + vd;
 				NODE *p = khoiTaoNODE(tuVung);
 				themVaoCuoi(l, p);
-				ofstream fow("word.txt"), fot("type.txt"), fom("mean.txt"), foe("example.txt");
-				fow << search;
-				fot << loai;
-				fom << nghia;
-				foe << vd;
-				fow.close();
-				fot.close();
-				fom.close();
-				foe.close();
+				ofstream foW("word.txt"), foT("type.txt"), foM("mean.txt"), foE("example.txt");
+				foW << search;
+				foT << loai;
+				foM << nghia;
+				foE << vd;
+				foW.close();
+				foT.close();
+				foM.close();
+				foE.close();
 			}
 		}
 		else if (luaChon == 3)
 		{
 			system("cls");
-			SetConsoleTextAttribute(console, 12);
-			cout << "\n\n\t\tNhap tu can CHINH SUA: ";
-			SetConsoleTextAttribute(console, 7);
-			cin >> search;
-			chinhSuTu(l); // menu chuc nang sua tu.
+			do
+			{
+				cout << "\n\t\t\tNhap tu can CHINH SUA: ";
+				cin >> search;
+				if (!kiemTraXau(search))
+				{
+					SetConsoleTextAttribute(console, 12);
+					cout << "\t\t\tTu nay khong co trong tu dien!" << endl;
+					SetConsoleTextAttribute(console, 7);
+				}
+			} while (!kiemTraXau(search));
+			search = chuanHoaXau(search);
+			chinhSuaTu(l); // menu chuc nang sua tu.
 		}
 		else if (luaChon == 4)
 		{
@@ -270,7 +280,7 @@ void menu()
 			cout << "\t\t\nNhap tu can xoa: ";
 			SetConsoleTextAttribute(console, 7);
 			cin >> search;
-			ofstream fow1("word.txt"), fot1("type.txt"), fom1("mean.txt"), foe1("example.txt");
+			ofstream foW1("word.txt"), foT1("type.txt"), foM1("mean.txt"), foE1("example.txt");
 			for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 				if (k->data.getTu() == search)
 				{
@@ -285,30 +295,34 @@ void menu()
 				{
 					if (k->pNext == NULL)
 					{
-						fow1 << k->data.getTu();
-						fot1 << k->data.getloaiTu();
-						fom1 << k->data.getNghia();
-						foe1 << k->data.getViDu();
+						foW1 << k->data.getTu();
+						foT1 << k->data.getloaiTu();
+						foM1 << k->data.getNghia();
+						foE1 << k->data.getViDu();
 					}
 					else
 					{
-						fow1 << k->data.getTu() << ' ';
-						fot1 << k->data.getloaiTu() << ' ';
-						fom1 << k->data.getNghia() << '@';
-						foe1 << k->data.getViDu() << '@';
+						foW1 << k->data.getTu() << ' ';
+						foT1 << k->data.getloaiTu() << ' ';
+						foM1 << k->data.getNghia() << '@';
+						foE1 << k->data.getViDu() << '@';
 					}
 				}
+				SetConsoleTextAttribute(console, 12);
+				cout << "\n\t\t\t[ERROR]: Tu '" << search << "' da duoc xoa!" << endl
+					 << "\t\t\tNhan phim bat ky de quay lai menu chuc nang" << endl;
+				getch();
 			}
-			fow1.close();
-			fot1.close();
-			fom1.close();
-			foe1.close();
+			foW1.close();
+			foT1.close();
+			foM1.close();
+			foE1.close();
 
 			if (!timKiem)
 			{
 				SetConsoleTextAttribute(console, 12);
-				cout << "\t\t\nERROR: Tu '" << search << "' chua co trong tu dien!" << endl
-					 << "\t\t\nNhan phim bat ky de quay lai menu chuc nang" << endl;
+				cout << "\n\t\t\t[ERROR]: Tu '" << search << "' chua co trong tu dien!" << endl
+					 << "\t\t\tNhan phim bat ky de quay lai menu chuc nang" << endl;
 				getch();
 			}
 		}
@@ -326,7 +340,7 @@ void menu()
 	fie.close();
 }
 
-void chinhSuTu(LIST &l)
+void chinhSuaTu(LIST &l)
 {
 	for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 		if (search == k->data.getTu())
@@ -408,28 +422,28 @@ void chinhSuTu(LIST &l)
 						getline(cin, viDu1);
 						k->data.setViDu(viDu1);
 					}
-					ofstream fow1("word.txt"), fot1("type.txt"), fom1("mean.txt"), foe1("example.txt");
+					ofstream foW1("word.txt"), foT1("type.txt"), foM1("mean.txt"), foE1("example.txt");
 					for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 					{
 						if (k->pNext == NULL)
 						{
-							fow1 << k->data.getTu();
-							fot1 << k->data.getloaiTu();
-							fom1 << k->data.getNghia();
-							foe1 << k->data.getViDu();
+							foW1 << k->data.getTu();
+							foT1 << k->data.getloaiTu();
+							foM1 << k->data.getNghia();
+							foE1 << k->data.getViDu();
 						}
 						else
 						{
-							fow1 << k->data.getTu() << ' ';
-							fot1 << k->data.getloaiTu() << ' ';
-							fom1 << k->data.getNghia() << '@';
-							foe1 << k->data.getViDu() << '@';
+							foW1 << k->data.getTu() << ' ';
+							foT1 << k->data.getloaiTu() << ' ';
+							foM1 << k->data.getNghia() << '@';
+							foE1 << k->data.getViDu() << '@';
 						}
 					}
-					fow1.close();
-					fot1.close();
-					fom1.close();
-					foe1.close();
+					foW1.close();
+					foT1.close();
+					foM1.close();
+					foE1.close();
 				}
 				else
 				{
@@ -547,15 +561,12 @@ bool kiemTraXau(string s)
 {
 	for (int i = 0; i < s.length(); i++)
 	{
-		if (s[i] < 65)
-			return false;
-		if (s[i] > 90 && s[i] < 97)
-			return false;
-		if (s[i] > 122)
+		if ((s[i] < 65) || (s[i] > 90 && s[i] < 97) || (s[i] > 122))
 			return false;
 	}
 	return true;
 }
+
 string chuanHoaXau(string s)
 {
 	string st = "";

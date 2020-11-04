@@ -57,7 +57,7 @@ public:
 	void xuatfullTu()
 	{
 		SetConsoleTextAttribute(console, 91);
-		cout << "\t\t\t" << setw(13) << left << "Word" << setw(20) << left << "Type" << setw(40) << left << "Mean" << setw(40) << left << "Example" << endl;
+		cout << "\n\n\t\t\t" << setw(13) << left << "Word" << setw(20) << left << "Type" << setw(40) << left << "Mean" << setw(46) << left << "Example" << endl;
 		SetConsoleTextAttribute(console, 7);
 
 		dictionary *ptr2 = new TU;
@@ -154,15 +154,15 @@ public:
 			if (i == 0)
 				cout << setw(20) << left << MloaiTuMoi[i]
 					 << setw(40) << left << MnghiaMoi[i]
-					 << setw(40) << left << MviDuMoi[i] << endl;
+					 << setw(46) << left << MviDuMoi[i] << endl;
 			else
 				cout << "\t\t\t" << setw(13) << left << " "
 					 << setw(20) << left << MloaiTuMoi[i]
 					 << setw(40) << left << MnghiaMoi[i]
-					 << setw(40) << left << MviDuMoi[i] << endl;
+					 << setw(46) << left << MviDuMoi[i] << endl;
 		}
 		SetConsoleTextAttribute(console, 12);
-		cout << "\t\t\t\t***NOTE: An phim bat ky de quay lai menu chuc nang";
+		cout << "\n\t\t\t\t\t***NOTE: An phim bat ky de quay lai menu chuc nang!";
 	}
 	void setfullTu(T_M_E p)
 	{

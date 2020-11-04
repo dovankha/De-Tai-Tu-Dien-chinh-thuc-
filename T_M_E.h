@@ -3,40 +3,40 @@
 
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
-struct TU:public dictionary
+struct TU : public dictionary
 {
 	string showTu(string s)
 	{
-		this->printTu(s); 
-		return ""; 
-	} 	
+		this->printTu(s);
+		return "";
+	}
 };
 
 // T_M_E : type-mean-example
 class T_M_E : public dictionary
 {
 	string loaiTu;
-	string Nghia;
+	string nghia;
 	string viDu;
 
 public:
 	T_M_E()
 	{
 		loaiTu = "";
-		Nghia = "";
+		nghia = "";
 		viDu = "";
 	}
-	void setNghia(string new_nghia)
+	void setNghia(string newNghia)
 	{
-		Nghia = new_nghia;
+		nghia = newNghia;
 	}
-	void setLoaiTu(string new_loaitu)
+	void setLoaiTu(string newLoaiTu)
 	{
-		loaiTu = new_loaitu;
+		loaiTu = newLoaiTu;
 	}
-	void setViDu(string new_vidu)
+	void setViDu(string newViDu)
 	{
-		viDu = new_vidu;
+		viDu = newViDu;
 	}
 	string getViDu()
 	{
@@ -44,7 +44,7 @@ public:
 	}
 	string getNghia()
 	{
-		return Nghia;
+		return nghia;
 	}
 	string getloaiTu()
 	{
@@ -61,32 +61,32 @@ public:
 		SetConsoleTextAttribute(console, 7);
 
 		dictionary *ptr2 = new TU;
-		string s=this->getTu();
-		cout<<ptr2->showTu(s); 
+		string s = this->getTu();
+		cout << ptr2->showTu(s);
 
-		string loaiTuMoi, nghiaMoi, viDuMoi, loaiTuCopy = loaiTu + ';', nghiaCopy = Nghia + '/', viDuCopy = viDu + '/';
-		string MloaiTuMoi[100], MnghiaMoi[100], MviDuMoi[100], temp1 = "", temp2 = "";
+		string loaiTuMoi, nghiaMoi, viDuMoi, loaiTuCopy = loaiTu + ';', nghiaCopy = nghia + '/', viDuCopy = viDu + '/';
+		string MloaiTuMoi[100], MnghiaMoi[100], MviDuMoi[100], temp1 = "", temp2 = ""; // MloaiTuMoi: Mang loai tu moi.
 		bool KT[100];
-		int lenloaiTu = 0, lenNghia = 0, lenViDu = 0;
+		int doDaiType = 0, doDaiMean = 0, doDaiExample = 0;
 		for (int i = 0; i < loaiTuCopy.length(); i++)
 			if (loaiTuCopy[i] == ';')
-				lenloaiTu++;
+				doDaiType++;
 
 		for (int i = 0; i < nghiaCopy.length(); i++)
 			if (nghiaCopy[i] == ';' || nghiaCopy[i] == '/')
 			{
-				lenNghia++;
+				doDaiMean++;
 				temp1 += nghiaCopy[i];
 			}
 
 		for (int i = 0; i < viDuCopy.length(); i++)
 			if (viDuCopy[i] == ';' || viDuCopy[i] == '/')
 			{
-				lenViDu++;
+				doDaiExample++;
 				temp2 += viDuCopy[i];
 			}
 
-		int GTLN = max(lenloaiTu, max(lenNghia, lenViDu));
+		int GTLN = max(doDaiType, max(doDaiMean, doDaiExample));
 		for (int i = 0; i < GTLN; i++)
 		{
 			MloaiTuMoi[i] = "";
@@ -151,6 +151,24 @@ public:
 		}
 		for (int i = 0; i < GTLN; i++)
 		{
+			while (MloaiTuMoi[i][0] == ' ')
+				MloaiTuMoi[i].erase(0, 1);
+			while (MloaiTuMoi[i][MloaiTuMoi[i].length() - 1] == ' ')
+				MloaiTuMoi[i].erase(MloaiTuMoi[i].length() - 1, 1);
+			while (MnghiaMoi[i][0] == ' ')
+				MnghiaMoi[i].erase(0, 1);
+			while (MnghiaMoi[i][MnghiaMoi[i].length() - 1] == ' ')
+				MnghiaMoi[i].erase(MnghiaMoi[i].length() - 1, 1);
+			for (int j = 0; j < MnghiaMoi[i].length(); j++)
+				while (MnghiaMoi[i][j] == ' ' && MnghiaMoi[i][j + 1] == ' ')
+					MnghiaMoi[i].erase(j, 1);
+			while (MviDuMoi[i][0] == ' ')
+				MviDuMoi[i].erase(0, 1);
+			while (MviDuMoi[i][MviDuMoi[i].length() - 1] == ' ')
+				MviDuMoi[i].erase(MviDuMoi[i].length() - 1, 1);
+			for (int j = 0; j < MviDuMoi[i].length(); j++)
+				while (MviDuMoi[i][j] == ' ' && MviDuMoi[i][j + 1] == ' ')
+					MviDuMoi[i].erase(j, 1);
 			if (i == 0)
 				cout << setw(20) << left << MloaiTuMoi[i]
 					 << setw(40) << left << MnghiaMoi[i]
@@ -162,12 +180,12 @@ public:
 					 << setw(46) << left << MviDuMoi[i] << endl;
 		}
 		SetConsoleTextAttribute(console, 12);
-		cout << "\n\t\t\t\t\t***NOTE: An phim bat ky de quay lai menu chuc nang!";
+		cout << "\n\t\t\t\t\t[NOTE]: An phim bat ky de quay lai menu chuc nang!";
 	}
 	void setfullTu(T_M_E p)
 	{
 		loaiTu = p.loaiTu;
-		Nghia = p.Nghia;
+		nghia = p.nghia;
 		viDu = p.viDu;
 		this->setId(p.getId());
 		this->setTu(p.getTu());
@@ -177,6 +195,6 @@ public:
 T_M_E::T_M_E(int id, string tu, string Ty, string Me, string Ex) : dictionary(id, tu)
 {
 	this->loaiTu = Ty;
-	this->Nghia = Me;
+	this->nghia = Me;
 	this->viDu = Ex;
 }

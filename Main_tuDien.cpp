@@ -144,10 +144,10 @@ void menu()
 		{
 			system("cls");
 			bool timKiem = false;
-			cout << "\n\n\t\t\t\t\t\t\t\t=========== NHUNG TU CO SAN ===========" << endl;
+			cout << "\n\n\t\t\t\t\t\t\t\t=========== NHUNG TU CO SAN ===========" << endl << endl;
 			SetConsoleTextAttribute(console, 6);
 			dictionary *ptr1 = new dictionary;
-			cout << "\t\t";
+			cout << "    ";
 			for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 			{
 				cout << ptr1->showTu(k->data.getTu()) << " ";
@@ -213,7 +213,7 @@ void menu()
 					 << "\t\t\t\t\t\t\t\t===================================" << endl
 					 << endl;
 				SetConsoleTextAttribute(console, 12);
-				cout << "\t\t\t\t\t***NOTE: Hay ngan cach cac nghia & vi du boi dau ';' !" << endl;
+				cout << "\t\t\t\t\t\t\t[NOTE]: Hay ngan cach cac nghia & vi du boi dau ';' !" << endl;
 				SetConsoleTextAttribute(console, 7);
 				while (true)
 				{
@@ -258,6 +258,7 @@ void menu()
 		else if (luaChon == 3)
 		{
 			system("cls");
+			bool timKiem = false;
 			do
 			{
 				cout << "\n\t\t\tNhap tu can CHINH SUA: ";
@@ -265,11 +266,22 @@ void menu()
 				if (!kiemTraXau(search))
 				{
 					SetConsoleTextAttribute(console, 12);
-					cout << "\t\t\tTu nay khong co trong tu dien!" << endl;
+					cout << "\n\t\t\t[NOTE]: Tu nay KHONG CO trong tu dien!" << endl;
 					SetConsoleTextAttribute(console, 7);
 				}
 			} while (!kiemTraXau(search));
 			search = chuanHoaXau(search);
+
+			for (NODE *k = l.pHead; k != NULL; k = k->pNext)
+				if (search == k->data.getTu())
+					timKiem = true;
+			if (!timKiem)
+			{
+				SetConsoleTextAttribute(console, 12);
+				cout << "\n\t\t[ERROR]: Tu '" << search << "' KHONG CO trong tu dien!" << endl;
+				getch();
+			}
+
 			chinhSuaTu(l); // menu chuc nang sua tu.
 		}
 		else if (luaChon == 4)
@@ -277,7 +289,7 @@ void menu()
 			system("cls");
 			bool timKiem = false;
 			SetConsoleTextAttribute(console, 12);
-			cout << "\t\t\nNhap tu can xoa: ";
+			cout << "\n\t\tNhap tu can xoa: ";
 			SetConsoleTextAttribute(console, 7);
 			cin >> search;
 			ofstream foW1("word.txt"), foT1("type.txt"), foM1("mean.txt"), foE1("example.txt");
@@ -309,7 +321,7 @@ void menu()
 					}
 				}
 				SetConsoleTextAttribute(console, 12);
-				cout << "\n\t\t\t[ERROR]: Tu '" << search << "' da duoc xoa!" << endl
+				cout << "\n\t\t\t[NOTE]: Tu '" << search << "' da duoc xoa!" << endl
 					 << "\t\t\tNhan phim bat ky de quay lai menu chuc nang" << endl;
 				getch();
 			}
@@ -321,8 +333,7 @@ void menu()
 			if (!timKiem)
 			{
 				SetConsoleTextAttribute(console, 12);
-				cout << "\n\t\t\t[ERROR]: Tu '" << search << "' chua co trong tu dien!" << endl
-					 << "\t\t\tNhan phim bat ky de quay lai menu chuc nang" << endl;
+				cout << "\n\t\t[ERROR]: Tu '" << search << "' KHONG CO trong tu dien!" << endl;
 				getch();
 			}
 		}

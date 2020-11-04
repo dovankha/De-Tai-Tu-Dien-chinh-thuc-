@@ -54,7 +54,7 @@ public:
 	T_M_E(string, string, string);
 	T_M_E(int, string, string, string, string);
 
-	void xuatfullTu()
+	void xuatFullTu()
 	{
 		SetConsoleTextAttribute(console, 91);
 		cout << "\n\n\t\t\t" << setw(13) << left << "Word" << setw(20) << left << "Type" << setw(40) << left << "Mean" << setw(46) << left << "Example" << endl;

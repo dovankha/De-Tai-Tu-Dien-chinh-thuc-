@@ -5,6 +5,22 @@
 
 string search; // bien toan cuc
 
+class Member
+{
+private:
+	int STT;
+
+public:
+	Member() : STT(0) {}
+	friend int ListMember(Member);
+};
+
+int ListMember(Member count)
+{
+	count.STT += 4;
+	return count.STT;
+}
+
 struct node
 {
 	T_M_E data;
@@ -67,11 +83,14 @@ void chinhSuaTu(LIST &l);
 void menu();
 bool kiemTraXau(string s);
 string chuanHoaXau(string s);
+void thongTinBanQuyen();
 
 // ------------- ham main --------------
 int main()
 {
 	SetConsoleTitle(TEXT("Tu Dien Anh-Viet"));
+	thongTinBanQuyen();
+	Sleep(4500);
 	menu();
 	return 0;
 }
@@ -144,7 +163,8 @@ void menu()
 		{
 			system("cls");
 			bool timKiem = false;
-			cout << "\n\n\t\t\t\t\t\t\t\t=========== NHUNG TU CO SAN ===========" << endl << endl;
+			cout << "\n\n\t\t\t\t\t\t\t\t=========== NHUNG TU CO SAN ===========" << endl
+				 << endl;
 			SetConsoleTextAttribute(console, 6);
 			dictionary *ptr1 = new dictionary;
 			cout << "    ";
@@ -170,7 +190,7 @@ void menu()
 				if (search == k->data.getTu())
 				{
 					timKiem = true;
-					k->data.xuatfullTu();
+					k->data.xuatFullTu();
 					cout << endl;
 					getch();
 				}
@@ -223,7 +243,7 @@ void menu()
 					string loai, nghia, vd;
 					fflush(stdin);
 					cout << "Nhap loai tu: ";
-					cin>>loai;
+					cin >> loai;
 					fflush(stdin);
 					saveLoai = saveLoai + loai + ';';
 					cout << "Nhap nghia cua tu: ";
@@ -234,9 +254,9 @@ void menu()
 					saveViDu = saveViDu + vd + '/'; // save vi du
 					cout << endl;
 				}
-				loai = saveLoai.substr(1, saveLoai.length() -1);
-				nghia = saveNghia.substr(1, saveNghia.length() -1);
-				vd = saveViDu.substr(1, saveViDu.length() -1);
+				loai = saveLoai.substr(1, saveLoai.length() - 1);
+				nghia = saveNghia.substr(1, saveNghia.length() - 1);
+				vd = saveViDu.substr(1, saveViDu.length() - 1);
 				T_M_E tuVung(count, search, loai, nghia, vd);
 				search = TU + ' ' + search;
 				loai = LOAI + ' ' + loai;
@@ -288,10 +308,13 @@ void menu()
 		{
 			system("cls");
 			bool timKiem = false;
+
 			SetConsoleTextAttribute(console, 12);
-			cout << "\n\t\tNhap tu can xoa: ";
+			cout << "\n\t\t\tNhap tu can XOA: ";
 			SetConsoleTextAttribute(console, 7);
+			
 			cin >> search;
+			search = chuanHoaXau(search);
 			ofstream foW1("word.txt"), foT1("type.txt"), foM1("mean.txt"), foE1("example.txt");
 			for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 				if (k->data.getTu() == search)
@@ -539,7 +562,7 @@ void xuatDanhSach(LIST l)
 		return;
 	for (NODE *k = l.pHead; k != NULL; k = k->pNext)
 	{
-		k->data.xuatfullTu();
+		k->data.xuatFullTu();
 		cout << endl;
 	}
 }
@@ -587,4 +610,23 @@ string chuanHoaXau(string s)
 		else
 			st += s[i];
 	return st;
+}
+
+void thongTinBanQuyen()
+{
+	Member count;
+	SetConsoleTextAttribute(console, 14);
+	cout << "\n\t\t\t\t\t\t===============DANH SACH THANH VIEN - NHOM 2 - D19CQAT01-N===============" << endl << endl;
+	for (int i = 1; i <= ListMember(count); i++)
+	{
+		if (i == 1)
+			cout << "\t\t\t\t\t\t\t\t" << i << ". Pham Ngoc Hoat - N19DCAT034" << endl;
+		else if (i == 2)
+			cout << "\t\t\t\t\t\t\t\t" << i << ". Do Van Kha - N19DCAT041" << endl;
+		else if (i == 3)
+			cout << "\t\t\t\t\t\t\t\t" << i << ". Do Xuan Trung - N19DCAT094" << endl;
+		else
+			cout << "\t\t\t\t\t\t\t\t" << i << ". Tran Van Minh Vuong - N19DCAT100" << endl;
+	}
+	SetConsoleTextAttribute(console, 7);
 }

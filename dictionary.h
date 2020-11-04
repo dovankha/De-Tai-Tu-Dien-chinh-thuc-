@@ -24,9 +24,9 @@ public:
 	{
 		Tu = newTu;
 	}
-	void printTu()
+	void printTu(string s)
 	{
-		cout << "\t\t\t" << setw(10) << left << Tu;
+		cout << "\t\t\t" << setw(13) << left << s;
 	}
 	virtual string showTu(string s)
 	{

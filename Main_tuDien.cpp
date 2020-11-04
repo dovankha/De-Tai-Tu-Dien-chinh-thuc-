@@ -58,21 +58,26 @@ NODE *findTail(LIST &l)
 	return p;
 }
 
+// ------------- khai bao protype --------------
+
 void themVaoDau(LIST &l, NODE *p);
-void XoaDau(LIST &l);
+void xoaDau(LIST &l);
 void xuatDanhSach(LIST l);
 void themVaoCuoi(LIST &l, NODE *p);
-void XoaCuoi(LIST &l);
-void XoaNodeCoKhoaBatKy(LIST &l, string tu);
+void xoaCuoi(LIST &l);
+void xoaNodeCoKhoaBatKy(LIST &l, string tu);
 void chinhSuTu(LIST &l);
 void menu();
 
+// ------------- ham main --------------
 int main()
 {
 	SetConsoleTitle(TEXT("Tu Dien Anh-Viet"));
 	menu();
 	return 0;
 }
+
+// ------------- function --------------
 
 void menu()
 {
@@ -166,7 +171,7 @@ void menu()
 			{
 				SetConsoleTextAttribute(console, 12);
 				cout << "\n\t\tERROR: Tu '" << search << "' chua co trong tu dien!" << endl
-					 << "\t\tNhan phim bat ki de quay lai!" << endl;
+					 << "\t\tNhan phim bat ky de quay lai!" << endl;
 				getch();
 			}
 		}
@@ -183,7 +188,7 @@ void menu()
 			{
 				SetConsoleTextAttribute(console, 12);
 				cout << "\n\t\tERROR: Tu '" << search << "' da ton tai trong tu dien!" << endl
-					 << "\t\tNhan Enter de quay lai menu chuc nang" << endl;
+					 << "\t\tNhan phim bat ky de quay lai menu chuc nang" << endl;
 				getch();
 			}
 			else
@@ -253,7 +258,7 @@ void menu()
 			system("cls");
 			bool timKiem = false;
 			SetConsoleTextAttribute(console, 12);
-			cout << "\t\t\nNhap tu can XOA: ";
+			cout << "\t\t\nNhap tu can xoa: ";
 			SetConsoleTextAttribute(console, 7);
 			cin >> search;
 			ofstream fow1("word.txt"), fot1("type.txt"), fom1("mean.txt"), foe1("example.txt");
@@ -261,7 +266,7 @@ void menu()
 				if (k->data.getTu() == search)
 				{
 					timKiem = true;
-					XoaNodeCoKhoaBatKy(l, search);
+					xoaNodeCoKhoaBatKy(l, search);
 					break;
 				}
 
@@ -294,7 +299,7 @@ void menu()
 			{
 				SetConsoleTextAttribute(console, 12);
 				cout << "\t\t\nERROR: Tu '" << search << "' chua co trong tu dien!" << endl
-					 << "\t\t\nNhan Enter de quay lai menu chuc nang" << endl;
+					 << "\t\t\nNhan phim bat ky de quay lai menu chuc nang" << endl;
 				getch();
 			}
 		}
@@ -325,13 +330,13 @@ void chinhSuTu(LIST &l)
 				system("cls");
 				SetConsoleTextAttribute(console, 11);
 				cout << "\n\n";
-				cout << "\t\t\t\t============================" << endl
-					 << "\t\t\t\t||    1. Sua loai tu      ||" << endl
-					 << "\t\t\t\t||    2. Sua nghia        ||" << endl
-					 << "\t\t\t\t||    3. Sua vi du        ||" << endl
-					 << "\t\t\t\t||    4. Sua tat ca       ||" << endl
-					 << "\t\t\t\t||    0. Cancel           ||" << endl
-					 << "\t\t\t\t============================" << endl;
+				cout << "\t\t\t\t\t\t\t\t============================" << endl
+					 << "\t\t\t\t\t\t\t\t||    1. Sua loai tu      ||" << endl
+					 << "\t\t\t\t\t\t\t\t||    2. Sua nghia        ||" << endl
+					 << "\t\t\t\t\t\t\t\t||    3. Sua vi du        ||" << endl
+					 << "\t\t\t\t\t\t\t\t||    4. Sua tat ca       ||" << endl
+					 << "\t\t\t\t\t\t\t\t||    0. Cancel           ||" << endl
+					 << "\t\t\t\t\t\t\t\t============================" << endl;
 				SetConsoleTextAttribute(console, 7);
 
 				int luaChon1;
@@ -398,7 +403,7 @@ void chinhSuTu(LIST &l)
 		}
 }
 
-void XoaNodeCoKhoaBatKy(LIST &l, string tu)
+void xoaNodeCoKhoaBatKy(LIST &l, string tu)
 {
 
 	if (l.pHead == NULL)
@@ -408,13 +413,13 @@ void XoaNodeCoKhoaBatKy(LIST &l, string tu)
 
 	if (l.pHead->data.getTu() == tu)
 	{
-		XoaDau(l);
+		xoaDau(l);
 		return;
 	}
 
 	if (findTail(l)->data.getTu() == tu)
 	{
-		XoaCuoi(l);
+		xoaCuoi(l);
 		return;
 	}
 
@@ -431,7 +436,7 @@ void XoaNodeCoKhoaBatKy(LIST &l, string tu)
 	}
 }
 
-void XoaCuoi(LIST &l)
+void xoaCuoi(LIST &l)
 {
 	if (l.pHead == NULL)
 	{
@@ -439,7 +444,7 @@ void XoaCuoi(LIST &l)
 	}
 	if (l.pHead->pNext == NULL)
 	{
-		XoaDau(l);
+		xoaDau(l);
 		return;
 	}
 
@@ -478,7 +483,7 @@ void xuatDanhSach(LIST l)
 	}
 }
 
-void XoaDau(LIST &l)
+void xoaDau(LIST &l)
 {
 	if (l.pHead == NULL)
 	{

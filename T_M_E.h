@@ -3,6 +3,15 @@
 
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
+struct TU:public dictionary
+{
+	string showTu(string s)
+	{
+		this->printTu(s); 
+		return ""; 
+	} 	
+};
+
 // T_M_E : type-mean-example
 class T_M_E : public dictionary
 {
@@ -48,9 +57,13 @@ public:
 	void xuatfullTu()
 	{
 		SetConsoleTextAttribute(console, 91);
-		cout << "\t\t\t" << setw(10) << left << "Word" << setw(20) << left << "Type" << setw(40) << left << "Mean" << setw(40) << left << "Example" << endl;
+		cout << "\t\t\t" << setw(13) << left << "Word" << setw(20) << left << "Type" << setw(40) << left << "Mean" << setw(40) << left << "Example" << endl;
 		SetConsoleTextAttribute(console, 7);
-		this->printTu();
+
+		dictionary *ptr2 = new TU;
+		string s=this->getTu();
+		cout<<ptr2->showTu(s); 
+
 		string loaiTuMoi, nghiaMoi, viDuMoi, loaiTuCopy = loaiTu + ';', nghiaCopy = Nghia + '/', viDuCopy = viDu + '/';
 		string MloaiTuMoi[100], MnghiaMoi[100], MviDuMoi[100], temp1 = "", temp2 = "";
 		bool KT[100];
@@ -143,13 +156,13 @@ public:
 					 << setw(40) << left << MnghiaMoi[i]
 					 << setw(40) << left << MviDuMoi[i] << endl;
 			else
-				cout << setw(10) << left << " "
+				cout << "\t\t\t" << setw(13) << left << " "
 					 << setw(20) << left << MloaiTuMoi[i]
 					 << setw(40) << left << MnghiaMoi[i]
 					 << setw(40) << left << MviDuMoi[i] << endl;
 		}
 		SetConsoleTextAttribute(console, 12);
-		cout << "\t\t\t\t***NOTE: An phim Enter de quay lai menu chuc nang";
+		cout << "\t\t\t\t***NOTE: An phim bat ky de quay lai menu chuc nang";
 	}
 	void setfullTu(T_M_E p)
 	{
